@@ -39,8 +39,8 @@ npm run dev:game -- games/pirate-friends
 
 1. **Load the hold with one confirmation.** Pick 1 to 10 kegs. One SDK confirmation converts RF into kegs, and each
    keg cracks into 10 Generations. After that there are no more prompts, so you can fire as fast as the cannon reloads.
-2. **Pick a rival and stake.** You and the rival each load the same stake: Barnacle Bess 20, Redbeard Rook 30, The
-   Dread Admiral 50.
+2. **Pick a rival and stake.** You and the rival each load the same stake: Barnacle Bess 30, Redbeard Rook 40, The
+   Dread Admiral 60.
 3. **Fire.** Your Friend is the captain on deck, the emblem on your mainsail, and the ammunition. Mouse direction sets
    the angle and distance sets the power; click to fire, hold for rapid fire. Keyboard: A/D angle, W/S power, Space
    fire. Touch: drag and release, or hold FIRE. Wind bends every shot, and rival ships tack back and forth.
@@ -48,15 +48,26 @@ npm run dev:game -- games/pirate-friends
 
 | Target | Damage | Effect |
 | --- | --- | --- |
-| Powder magazine (glowing TNT hatch) | 40 | One blast per ship, sets the deck on fire, +5 Generations salvage |
-| Waterline cracks | 15 | Leak that keeps draining hull, stacking |
-| Captain's cabin | 13 | +2 Generations plunder |
-| Sails | 5 | Shot rips through and keeps flying; each tear slows their reload 28%, 4 tears snap the mast |
-| Hull | 9 | Solid hit |
+| Powder magazine (small glowing TNT hatch) | 34 | One blast per ship, sets the deck on fire, +5 Generations salvage |
+| Waterline cracks | 11 | Leak that keeps draining hull until their crew bails it out |
+| Captain's cabin | 8 | +2 Generations plunder |
+| Sails | 3 | Shot rips through and keeps flying; each tear slows their reload 28%, 4 tears snap the mast |
+| Hull | 6 | Solid hit |
+
+**Why it is hard (and enraging):** every rapid shot heats your cannon and scatters it, and maxing the heat locks it
+for 2.6 s, so spamming sprays and deliberate shots fly true. Stop hitting a rival for 1.4 s and their crew patches the
+hull and bails out leaks, so slow play gets undone. Below 35% hull they turn desperate and fire 38% faster. The wind
+swings every few seconds, the ships tack on an irregular course, the aim preview only shows the first third of a
+second, near misses shout "SO CLOSE!", and three misses in a row earn a taunt. Hit streaks add up to +50% damage and
+every fifth hit in a row pays +2.
+
+Measured with bots on the SDK harness: a deliberate aimer beats Barnacle Bess with about 20 of 30 shots, while
+holding fire on one spot needs all 30 for a net +4. Redbeard Rook and the Dread Admiral both sink a slow deliberate
+aimer; a faster one beats Rook with 2 shots to spare and the Admiral with 5.8 hull left. Full table in the game README.
 
 On the way across: gulls bounce your shot higher (+1), RF barrels are trampolines (+2), treasure chests pay +5, flat
 fast shots skip off the water, the Kraken eats any shot it touches, and you can shoot their cannonballs out of the
-sky (+1). Hit streaks add up to +40% damage.
+sky (+1).
 
 5. **Winner takes the hold.** Sink them or outlast their ammunition and you get back your unfired Generations, plus
    their whole stake, plus salvage. Run dry or sink and they take your whole stake. Fired shots are burned either way.
@@ -68,12 +79,12 @@ sky (+1). Hit streaks add up to +40% damage.
 | Keg price | 1 RF (`1000000000000000000` base units), SDK consumable "Powder kegs" |
 | Generations per keg | 10 |
 | SDK outcome table | One row, 10,000 bps, "Keg buyback reserve" worth 1 RF. The SDK requires a prize, so each keg reserves its full price. The game never calls `play`, `settle` or `redeem`, so no buyback is offered in the preview. |
-| Stakes | 20, 30 or 50 Generations a side |
+| Stakes | 30, 40 or 60 Generations a side |
 | Win | `+ stake - fired + salvage` Generations |
 | Loss | `- stake` Generations |
 
 **Why it is Token Activity:** Generations can only be made by spending RF, and every shot destroys one. Battles are
-fast (a full Admiral fight is 50 Generations, 5 RF, a side at stake) and the only way back into a fight after a loss
+fast (a full Admiral fight is 60 Generations, 6 RF, a side at stake) and the only way back into a fight after a loss
 is to load more kegs. In a live version each fired Generation burns its RF.
 
 The only SDK action used is `client.buy(kegs)`: the single confirmation. The Generations ledger, stakes, payouts and
@@ -84,8 +95,8 @@ salvage live inside the game frame for the runtime session and reset on reload, 
 - `npx friendsdk check games/pirate-friends`: valid. `npm run check:games`: all examples and this game valid.
 - `npx tsc -p games/pirate-friends/tsconfig.json`: clean.
 - SDK mock-wallet browser runs at 960, 600 and 390 px: load kegs with one confirmation, start a battle, fire 6 shots
-  with no further confirmation, forfeit, check the result screen. A second run aims with the mouse, sinks Barnacle
-  Bess and checks the payout (40 loaded, 20 staked, 6 fired, won back 14 + 20 + 8 salvage, hold 62).
+  with no further confirmation, forfeit, check the result screen. Difficulty bots (`bot.mjs`) play every rival and
+  print the result screen (table in the game README).
 - The public preview loads with no console errors and stops at the SDK's wallet and Friend gate.
 
 ## Known issues and limits
