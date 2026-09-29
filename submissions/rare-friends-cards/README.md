@@ -89,7 +89,7 @@ weight.
 
 | check | result |
 | --- | --- |
-| `node scripts/audit.mjs <site> 0x1f8a...fa7b` | **37/37** once the wallet's activation history has loaded: every figure on the sample wallet's pages matches an independent implementation of rarefriends.com's formulas; both PNG routes render. On a cold first view the two APR checks read "unavailable" (see Known issues) |
+| `node scripts/audit.mjs <site> 0x1f8a...fa7b` | **37/37**, including a cold first view of the wallet: every figure on the sample wallet's pages matches an independent implementation of rarefriends.com's formulas; both PNG routes render |
 | Phone flow at 360, 390 and 430px with touch, plus desktop 1440 | **30/30 each**: no sideways scroll, 44px taps, no clipped text, no console errors; fetch, pick, caption, shuffle, download and copy all work by tap |
 | Viewport sweep, 12 widths from 320 to 2560 | **36/36** on the portfolio card, a Friend card and `/memes` |
 | `npx tsc --noEmit`, `npx next build` | clean |
@@ -98,8 +98,8 @@ weight.
 
 - **It depends on rarefriends.com's undocumented routes**, which have moved without notice (renamed 2026-09-19,
   state route retired 2026-09-25). The audit script catches drift against their own formulas.
-- The first view of a wallet nobody has opened before can show "activation history unavailable" in the APR cell
-  while its history loads; a refresh fills it.
+- If the chain's log index is slow, a wallet nobody has opened before can show "reading the activation history..."
+  in the APR cell for a few seconds; the page fills it in by itself.
 - The Friend picker lists up to 80 Friends, earning ones first.
 - Copying a meme as an image needs a browser that supports it; where it does not, the page says so and download
   works. On iPhone, download saves to Files; tap the card and long-press to save to Photos.
