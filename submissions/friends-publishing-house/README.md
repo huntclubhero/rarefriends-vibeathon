@@ -29,7 +29,7 @@ release's SHA256SUMS).
 git clone https://github.com/Halldon-Inc/friends-publishing-house && cd friends-publishing-house
 npm install
 cp .env.example .env.local
-npm run dev -- -p 3190
+npx next dev -p 3190
 ```
 
 ## Why it is Character Spotlight
