@@ -87,14 +87,11 @@ emotes, layouts) is drawn in code.
   world, editing pages, publishing, the reader and its `og:image` / `twitter:card` tags, with 0 console errors and
   no horizontal overflow at 390 px. After deploy, a production smoke test confirmed pages load, studio APIs refuse
   requests without a holder session, and the local-only dev sign-in returns 404.
-- **Not yet verified:** a full sign-in and publish with a real wallet on the live site. The flow above was tested
-  locally with a development-only sign-in.
+- **Real wallet:** signing in with a real wallet (MetaMask) on the live site works end to end.
 - **MetaMask warning:** on the new `*.vercel.app` domain, MetaMask's security alerts have shown a "malicious"
   warning on the sign-in signature. The message is a valid EIP-4361 sign-in whose domain matches the site, it is on
   no phishing list we checked, and signing it cannot move funds. We believe it is a reputation false positive for a
   new domain.
-- **Moderation:** there is no report button yet; published issues go straight to the public shelf. Takedowns are
-  manual for now.
 - **Demo issue:** "The GM Heist" is a house demo (pen name "FPH Demo Desk") made in the studio so judges without a
   Friend have something to read; its Friends appear as guest stars.
 - Community project, not affiliated with Rare Friends.
