@@ -8,7 +8,7 @@
 **Read the demo issue (no wallet needed):** https://friends-publishing-house.vercel.app/read/the-gm-heist-2fe169
 
 **Project**
-Friends Publishing House, a manga studio and publishing shelf for Rare Friends holders, built with FriendSDK v0.1.3.
+Friends Publishing House, a manga studio and publishing shelf for Rare Friends holders, built with FriendSDK v0.1.4.
 
 **Builder / contact**
 Hunt &middot; GitHub [@huntclubhero](https://github.com/huntclubhero) &middot; wallet `huntclubhero.eth`
@@ -22,7 +22,7 @@ full colour, and publish issues anyone can read, share to X, embed, or remix.
 
 **Source**
 [github.com/Halldon-Inc/friends-publishing-house](https://github.com/Halldon-Inc/friends-publishing-house)
-(Next.js 15, TypeScript). FriendSDK v0.1.3 is vendored as its release tarball (`vendor/`, SHA-256 matches the
+(Next.js 15, TypeScript). FriendSDK v0.1.4 is vendored as its release tarball (`vendor/`, SHA-256 matches the
 release's SHA256SUMS).
 
 ```sh
