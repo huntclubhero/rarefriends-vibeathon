@@ -83,7 +83,7 @@ emotes, layouts) is drawn in code.
 
 ## Checks and known issues
 
-- **Checks run:** `tsc --noEmit` clean; `next build` green. A Playwright end-to-end run covers sign-in, building a
+- **Checks run:** TypeScript typecheck clean; `next build` green. A Playwright end-to-end run covers sign-in, building a
   world, editing pages, publishing, the reader and its `og:image` / `twitter:card` tags, with 0 console errors and
   no horizontal overflow at 390 px. After deploy, a production smoke test confirmed pages load, studio APIs refuse
   requests without a holder session, and the local-only dev sign-in returns 404.
