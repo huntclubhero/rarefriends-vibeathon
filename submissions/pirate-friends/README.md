@@ -8,7 +8,7 @@
 Generations NFT, generation 1 or higher; the FriendSDK runtime checks this before play)
 
 **Project**
-Pirate Friends, a cannon battle game built on FriendSDK v0.1.3.
+Pirate Friends, a cannon battle game built on FriendSDK v0.1.4.
 
 **Builder / contact**
 Hunt &middot; GitHub [@huntclubhero](https://github.com/huntclubhero) &middot; wallet `huntclubhero.eth`
@@ -23,7 +23,7 @@ is burned, and the winner keeps the loser's entire stake.
 **Source**
 [github.com/Halldon-Inc/pirate-friends](https://github.com/Halldon-Inc/pirate-friends), game in
 [`games/pirate-friends`](https://github.com/Halldon-Inc/pirate-friends/tree/main/games/pirate-friends).
-FriendSDK **v0.1.3** (CLI game directory, SDK runtime for wallet, Friend selection, ownership gate and confirmations).
+FriendSDK **v0.1.4** (CLI game directory, SDK runtime for wallet, Friend selection, ownership gate and confirmations).
 
 ```sh
 git clone https://github.com/Halldon-Inc/pirate-friends && cd pirate-friends
@@ -98,11 +98,14 @@ salvage live inside the game frame for the runtime session and reset on reload, 
   with no further confirmation, forfeit, check the result screen. Difficulty bots (`bot.mjs`) play every rival and
   print the result screen (table in the game README).
 - The public preview loads with no console errors and stops at the SDK's wallet and Friend gate.
+- The preview is built with FriendSDK v0.1.4, so its `runtime.js` and `game.js` contain no RF transfer, approval,
+  signing or raw-transaction code (checked on the live GitHub Pages files). Wallet connection and the Friend ownership
+  check are unchanged.
 
 ## Known issues and limits
 
 - **Opponents are AI captains, not other players.** The SDK sandbox only allows network access to the Robinhood RPC,
-  so live matchmaking is not possible in SDK v0.1.3. Real player vs player needs a match service and an escrow
+  so live matchmaking is not possible in SDK v0.1.4. Real player vs player needs a match service and an escrow
   contract holding both stakes.
 - **Skill results are decided in the browser.** A live version needs a server-verified or replay-verified result
   before an escrow pays out.
