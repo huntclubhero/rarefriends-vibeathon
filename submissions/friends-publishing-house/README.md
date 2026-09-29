@@ -1,11 +1,15 @@
-![Friends Publishing House](https://raw.githubusercontent.com/Halldon-Inc/friends-publishing-house/master/docs/media/home.png)
+![Friends Publishing House: cast a Friend, ink a page, publish](https://raw.githubusercontent.com/Halldon-Inc/friends-publishing-house/master/docs/media/demo.gif)
 
 # Friends Publishing House
 
 **Your Friend. Your manga.**
 
-**Live:** https://friends-publishing-house.vercel.app
-**Read the demo issue (no wallet needed):** https://friends-publishing-house.vercel.app/read/the-gm-heist-2fe169
+Holders write and publish their own manga starring their Friend. Anyone can read it, and any holder can remix it with credit.
+
+- **Live:** https://friends-publishing-house.vercel.app
+- **Read the demo issue (no wallet needed):** https://friends-publishing-house.vercel.app/read/the-gm-heist-2fe169
+- **Video (28 s, MP4):** [demo.mp4](https://github.com/Halldon-Inc/friends-publishing-house/blob/master/docs/media/demo.mp4). Pick a FriendSDK world for a panel, cast a Friend, pose it, add a speech bubble and SFX, flip B&W and colour, publish, read it, then the 1200 x 630 card X shows when the link is posted.
+- **Phones:** the full editor works by touch, and the reader swipes page to page.
 
 **Project**
 Friends Publishing House, a manga studio and publishing shelf for Rare Friends holders, built with FriendSDK v0.1.4.
@@ -32,6 +36,10 @@ cp .env.example .env.local
 npx next dev -p 3190
 ```
 
+**Wallet and network**
+Reading needs nothing. Creating needs a wallet holding a Genesis or Generations Friend on Robinhood mainnet (chain
+4663). Sign-in is one signed message: free, no transaction, no approval.
+
 ## Why it is Character Spotlight
 
 Your Friend is the main character of every page. Generations Friends are drawn from **FriendSDK's canonical
@@ -51,8 +59,8 @@ there is an RSS feed at `/feed.xml`.
 
 **Creating (holders):**
 1. **Sign in.** Open `/studio`, connect a wallet holding a Genesis or Generations Friend on Robinhood mainnet, and
-   sign one plain-text sign-in message (EIP-4361). It is free and sends no transaction; the server verifies the
-   signature and checks `balanceOf` on both collections.
+   sign one plain-text sign-in message (EIP-4361). The server verifies the signature and checks `balanceOf` on both
+   collections.
 2. **Build a world.** Start from any of the six FriendSDK worlds (Garden Commons, Circuit Courtyard, Crystal Steps,
    Rooftop Hangout, Tidal Islands, Orbital Array), drag in any of the 18 SDK props, walk your Friends onto the
    ground, and switch between **black and white** (SDK monochrome with signal green) and **colour** (SDK
@@ -66,6 +74,12 @@ there is an RSS feed at `/feed.xml`.
    1200 x 630 share card, so a link posted on X unfurls with the cover. Republishing keeps the link.
 5. **Remix.** Any published issue has a "Remix this issue" button: a holder gets a copy with their own Friends to
    swap in, and the published remix credits the original.
+
+**On a phone:** the canvas sits on top and the tools live in a tabbed tray (Add, Edit, Page, Issue; World, Props,
+Friends, Edit in the world builder). Friends, props, bubble tails and the resize and rotate handles all drag with a
+finger. The reader swipes, or tap the right side for next and the left for back.
+
+![The phone editor: canvas, bubble text, cast picker, reader](https://raw.githubusercontent.com/Halldon-Inc/friends-publishing-house/master/docs/media/phone-editor.png)
 
 ![The GM Heist, a 3-page demo issue](https://raw.githubusercontent.com/Halldon-Inc/friends-publishing-house/master/docs/media/gm-heist-pages.png)
 
@@ -83,15 +97,27 @@ emotes, layouts) is drawn in code.
 
 ## Checks and known issues
 
-- **Checks run:** TypeScript typecheck clean; `next build` green. A Playwright end-to-end run covers sign-in, building a
-  world, editing pages, publishing, the reader and its `og:image` / `twitter:card` tags, with 0 console errors and
-  no horizontal overflow at 390 px. After deploy, a production smoke test confirmed pages load, studio APIs refuse
-  requests without a holder session, and the local-only dev sign-in returns 404.
+- **Checks run:** TypeScript typecheck clean; `next build` green.
+- **Touch and desktop end to end (Playwright):** real touch drags at 360, 390 and 430 px portrait and 844 x 390
+  landscape, and the same flow with a mouse at 1440 px. Build a world (all six bases, props, a Friend, drag both,
+  B&W and colour, remove then undo, autosave survives a reload), make a page (drag, resize and rotate a Friend,
+  type a bubble and drag its tail, SFX, emote, prop, pan a world panel, change layout, add a page), publish, then
+  read it (swipe, tap back, share buttons). All passing, 0 console errors, no horizontal overflow, and every control
+  on those screens at least 40 px.
+- **Earlier runs:** the reader's `og:image` / `twitter:card` tags check out. After deploy, a production smoke test
+  confirmed pages load, studio APIs refuse requests without a holder session, and the local-only dev sign-in
+  returns 404.
 - **Real wallet:** signing in with a real wallet (MetaMask) on the live site works end to end.
-- **MetaMask warning:** on the new `*.vercel.app` domain, MetaMask's security alerts have shown a "malicious"
-  warning on the sign-in signature. The message is a valid EIP-4361 sign-in whose domain matches the site, it is on
-  no phishing list we checked, and signing it cannot move funds. We believe it is a reputation false positive for a
-  new domain.
+- **Phones:** keyboard handling follows the browser's visual viewport; checked in emulation, not yet on a physical
+  iPhone.
 - **Demo issue:** "The GM Heist" is a house demo (pen name "FPH Demo Desk") made in the studio so judges without a
-  Friend have something to read; its Friends appear as guest stars.
+  Friend have something to read; its Friends appear as guest stars. The video was recorded on a local run of the
+  same code.
 - Community project, not affiliated with Rare Friends.
+
+## Wallet note
+
+Sign-in is a free signed message: no transaction, no approval, nothing that can move funds. Some wallets flag new
+domains. On this `*.vercel.app` domain, MetaMask's security alerts have shown a "malicious" warning on the sign-in
+signature. The message is a valid EIP-4361 sign-in whose domain matches the site, and it is on no phishing list we
+checked, so we believe it is a reputation false positive for a new domain.
