@@ -62,8 +62,8 @@ second, near misses shout "SO CLOSE!", and three misses in a row earn a taunt. H
 every fifth hit in a row pays +2.
 
 Measured with bots on the SDK harness: a deliberate aimer beats Barnacle Bess with about 20 of 30 shots, while
-holding fire on one spot needs all 30 for a net +4. Redbeard Rook and the Dread Admiral both sink a slow deliberate
-aimer; a faster one beats Rook with 2 shots to spare and the Admiral with 5.8 hull left. Full table in the game README.
+holding fire on one spot needs all 30 for a net +4. A deliberate aimer beat Redbeard Rook in 4 of 4
+runs and the Dread Admiral in 3 of 4, one of them with 1 hull point left. Full table in the game README.
 
 On the way across: gulls bounce your shot higher (+1), RF barrels are trampolines (+2), treasure chests pay +5, flat
 fast shots skip off the water, the Kraken eats any shot it touches, and you can shoot their cannonballs out of the
