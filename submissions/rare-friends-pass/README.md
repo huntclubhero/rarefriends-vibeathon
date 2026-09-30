@@ -60,6 +60,8 @@ GET https://rare-friends-pass.vercel.app/wallet-pass/eip155/4663/<Genesis or Gen
 
 Without proof it answers `401 proof_required`. With an ERC-4361 challenge signed by the current owner, it returns `{ formats: { apple, google }, updatedAt }`. Pass links are bound to the Friend's current owner and checked against a fresh `ownerOf` read each time, so selling a Friend kills every link the previous owner held.
 
+The standard now has an open-source SDK (MIT), published on npm under `@erc8426`: contracts, a pass server, Apple and Google Wallet delivery, a client, React components and a conformance suite, at https://github.com/huntclubhero/erc8426-sdk. This site was built before the SDK and runs its own resolver on the same protocol. For Rare Friends it is the short path to native support: a future contract or registry that adds `passURI` can be checked with `npx @erc8426/conformance`, and any wallet or marketplace can offer Add to Wallet for a Friend with `@erc8426/client`.
+
 **Design notes for the Rare Friends team:**
 - Adding `passURI(tokenId)` to a future contract (or a registry) that points at this manifest would let any wallet app find a Friend's pass.
 - The Friend wallet has no delegation hook. Adding one, in the style of Tokenbound V3's `setPermissions`, would let an owner approve a withdraw-to-owner-only executor, which would make Withdraw one tap as well.
